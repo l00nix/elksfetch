@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-01",
+  "machine": "HP 200LX DS (identified by owner; speed not benchmarked)",
+  "transport": "BH00K9NP serial, 9600 8N1",
+  "kernel": "ELKS elks 0.9.2 hp200lx-4.0-cf 2026-10-21 ibmpc i8086",
+  "root_filesystem": "MINIX on /dev/cfa1",
+  "guest_directory": "/root/fetch01",
+  "source_commit": "e3fc5fb6f11c154be92700c2780a8fb621dda685",
+  "target_md5_verified": {
+    "elksfetch": "76d81cf043398a783c411ccebd40002f",
+    "elxcap": "a654e8b9aae592e35c0f00f479c1ddb0",
+    "hpmono.bmp": "143f673f8cf9d119358052764f907b94"
+  },
+  "elxcap_version": "0.1",
+  "elxcap_sha256": "33eccc5742da65066349dc9c4429149e3fefa95a6f7851ce298c8960765392fa",
+  "capture_dimensions": [
+    640,
+    200
+  ],
+  "capture_exit": 0,
+  "tests": [
+    "version",
+    "plain serial output",
+    "uptime comparison",
+    "invalid width exits 2",
+    "monochrome console output with configured model",
+    "ELXcap capture and checksum-verified download"
+  ],
+  "files": {
+    "elksfetch": {
+      "bytes": 9712,
+      "sha256": "0c2de601af88122e218b52734a744788ca9d1c35e015709b615dc25ac080db7a"
+    },
+    "capture_bmp": {
+      "bytes": 16062,
+      "sha256": "2c723078093ef78186f0706401292d0d6962d22f87cc60d5424a927b417ec757"
+    },
+    "capture_png": {
+      "bytes": 8225,
+      "sha256": "5fbe07c80c6092f1010ab97a5d708bc99b3fc077a8747cbd53666d980eabaeb1"
+    }
+  },
+  "binary_sha256": "0c2de601af88122e218b52734a744788ca9d1c35e015709b615dc25ac080db7a"
+}

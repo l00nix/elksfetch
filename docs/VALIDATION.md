@@ -1,6 +1,8 @@
 # Validation — 2026-11-01
 
-This is a development milestone, not hardware acceptance or a public release.
+This records the emulator/build milestone. A subsequent
+[HP 200LX DS hardware smoke test](HP200LX-DS-20261101.md) passed on the same
+date. This is still a development milestone, not a public release.
 
 ## Build
 
@@ -77,8 +79,9 @@ above were run locally; no successful GitHub Actions run is claimed.
 
 ## Remaining acceptance
 
-PPC 512 and HP 200LX hardware runs, true 8088 timing/performance, serial
-terminal varieties, and other ELKS configurations remain unverified. This
+The initial HP 200LX DS hardware run is documented separately. PPC 512,
+true 8088 timing/performance, serial terminal varieties, longer-running
+hardware acceptance, and other ELKS configurations remain unverified. This
 QEMU run on a 486 does not establish execution on a physical 8086/8088.
 DOSfetch is not implemented. The integration patch has not been submitted
 upstream, and the repository remains private.

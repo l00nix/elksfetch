@@ -6,7 +6,8 @@
 - [x] Small, wide and information-only layouts with monochrome support.
 - [x] Native kernel identity, memory and uptime interfaces.
 - [x] Minimal external build script and proposed ELKS image integration patch.
-- [ ] Test on the Amstrad PPC 512 and HP 200LX; retain genuine captures.
+- [x] HP 200LX DS smoke test and ELXcap screenshot retained (2026-11-01).
+- [ ] Test on the Amstrad PPC 512 and broaden HP 200LX acceptance.
 - [ ] Set the first release version after hardware acceptance.
 - [ ] Confirm artwork attribution and choose which screenshots to publish.
 - [ ] Make the repository public when the owner requests it.

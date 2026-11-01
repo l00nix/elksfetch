@@ -14,3 +14,13 @@ The test runner connected stdin/stdout to `/dev/tty1` for screenshots. QEMU's
 converted them to PNG. No content was painted over, composited or invented.
 The console is 80 columns; the compact capture explicitly limits the program
 output to 40 columns. These are emulator captures, not real-hardware photos.
+
+## HP 200LX DS hardware capture
+
+`hp200lx-ds.bmp` is the original ELXcap 0.1 capture from the physical HP 200LX
+DS on 2026-11-01. The 16,062-byte file was downloaded over serial and its MD5
+matched the value on the HP. `hp200lx-ds.png` is a lossless `sips` conversion.
+No image content was composited, drawn over or generated. ELXcap reconstructs
+text-mode captures from the active logical text page and font; LCD zoom/pan,
+cursor and hardware inversion are outside its capture scope.
+See `../HP200LX-DS-20261101.md` and its JSON manifest for test details/hashes.

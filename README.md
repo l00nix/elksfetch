@@ -6,17 +6,21 @@ Linux filesystem dependencies on the target.
 
 Inspired by [Neofetch](https://github.com/dylanaraps/neofetch), written as a new
 C program for [ELKS](https://github.com/ghaerr/elks). Intended hardware includes
-the Amstrad PPC 512 and HP 200LX. Hardware acceptance is still pending.
+the Amstrad PPC 512 and HP 200LX. Initial real-hardware tests now pass on an
+HP 200LX DS; PPC 512 testing remains pending.
 
 **Status:** private development, `0.1.0-dev`. Native IA16 cross-build and QEMU
-runtime verified; DOSfetch is planned, not implemented. The upstream integration
+runtime verified, plus an [HP 200LX DS hardware smoke test](docs/HP200LX-DS-20261101.md).
+DOSfetch is planned, not implemented. The upstream integration
 patch is a candidate and has not been submitted.
 
-![ELKSfetch running on the ELKS console in QEMU](docs/screenshots/elks-colour.png)
+![ELKSfetch on a real HP 200LX DS, captured with ELXcap](docs/screenshots/hp200lx-ds.png)
 
-*Actual ELKS 0.9.2 console capture in QEMU, 80 columns. QEMU is configured as a
-486 PC; the program is compiled for the 8086 instruction set. The `Platform`
-line is ELKS's build/platform string, not a detected CPU model.*
+*Real HP 200LX DS running `hp200lx-4.0-cf`, captured with ELXcap 0.1 on
+2026-11-01. Original [640×200 BMP](docs/screenshots/hp200lx-ds.bmp) retained;
+the PNG is a lossless viewing conversion. ELXcap reconstructs the logical text
+page; LCD zoom, hardware inversion and cursor appearance are not reproduced.
+The model label is explicitly configured, not auto-detected.*
 
 ## What it shows
 
@@ -59,7 +63,13 @@ available with `--logo wide` on terminals wider than 100 columns; it falls back
 to the small layout when it does not fit. The default width comes from the
 terminal window size, with an 80-column fallback and `--width` override.
 
-## Monochrome and compact views
+## QEMU views
+
+![ELKSfetch running on the ELKS console in QEMU](docs/screenshots/elks-colour.png)
+
+*Actual ELKS 0.9.2 console capture, 80 columns. QEMU is configured as a 486 PC;
+the program is compiled for the 8086 instruction set. The `Platform` line is
+ELKS's build/platform string, not a detected CPU model.*
 
 ![ELKSfetch monochrome console capture](docs/screenshots/elks-mono.png)
 
