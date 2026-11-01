@@ -37,7 +37,8 @@ with tempfile.TemporaryDirectory(prefix='fetch-qemu-') as tmp:
     proc = subprocess.Popen(['qemu-system-i386', '-machine', 'pc', '-cpu', '486',
         '-accel', 'tcg,one-insn-per-tb=on', '-m', '16M', '-display', 'none',
         '-monitor', 'none', '-serial', f'unix:{serial},server=on,wait=off',
-        '-qmp', f'unix:{qmp},server=on,wait=off', '-nic', 'none',
+        '-qmp', f'unix:{qmp},server=on,wait=off',
+        '-netdev', 'user,id=fetch', '-device', 'ne2k_isa,irq=12,netdev=fetch',
         '-drive', f'file={disk},format=raw,if=ide', '-boot', 'c'], stdout=log, stderr=log)
     transcript = bytearray()
     try:
@@ -68,6 +69,7 @@ with tempfile.TemporaryDirectory(prefix='fetch-qemu-') as tmp:
         plain = command('elksfetch --plain')
         assert b'OS: ELKS' in plain and b'Main RAM:' in plain and b'Uptime:' in plain
         assert b'unavailable' not in plain
+        assert b'Network: disconnected' in plain and b'IPv4:' not in plain
         time.sleep(2)
         later = command('elksfetch --plain')
         assert plain.split(b'Uptime: ')[1].split(b'\r')[0] != later.split(b'Uptime: ')[1].split(b'\r')[0]
@@ -95,6 +97,20 @@ with tempfile.TemporaryDirectory(prefix='fetch-qemu-') as tmp:
             command('elksfetch ' + options + ' < /dev/tty1 > /dev/tty1')
             time.sleep(.3)
             qcommand('screendump', {'filename': str(a.out / (name + '.ppm'))})
+        # Only the disposable guest is configured. No host port forwarding.
+        command('ktcp -b -p ne0 10.0.2.15 10.0.2.2 255.255.255.0')
+        connected = command('elksfetch --plain')
+        assert b'Network: connected (configured)' in connected
+        assert b'IPv4: 10.0.2.15' in connected
+        assert b'Netmask: 255.255.255.0' in connected
+        assert b'Gateway: 10.0.2.2' in connected
+        command("echo -e '\\033[2J\\033[H' > /dev/tty1")
+        command('elksfetch --mono < /dev/tty1 > /dev/tty1')
+        time.sleep(.3)
+        qcommand('screendump', {'filename': str(a.out / 'elks-network.ppm')})
+        command('net stop')
+        stopped = command('elksfetch --plain')
+        assert b'Network: disconnected' in stopped and b'IPv4:' not in stopped
         if a.chroot_helper:
             command('mkdir /tmp/froot')
             command('cp /bin/elksfetch /tmp/froot/fetch')

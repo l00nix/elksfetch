@@ -87,6 +87,7 @@ void fetch_collect(struct fetch_info *info, const char *model)
         fetch_add(info, "User", text);
     }
     memory_and_uptime(info);
+    fetch_network(info);
     value = getenv("SHELL");
     fetch_add(info, "Shell (env)", value ? value : "not set");
     value = getenv("TERM");

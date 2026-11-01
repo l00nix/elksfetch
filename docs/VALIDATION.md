@@ -1,6 +1,7 @@
 # Validation — 2026-11-01
 
-This records the emulator/build milestone. A subsequent
+This records the original emulator/build milestone. The subsequent networking
+implementation has separate [validation evidence](NETWORKING.md). A subsequent
 [HP 200LX DS hardware smoke test](HP200LX-DS-20261101.md) passed on the same
 date. This is still a development milestone, not a public release.
 
@@ -11,7 +12,7 @@ date. This is still a development milestone, not a public release.
 - Prepared ELKS build tree: `e1469b64c5809c44d5c822eaeebd0e97d5996289`.
 - ELKS integration files: `7e0d8ea8ea87dbd4da768284887ad953be4bbaa0`.
 - Application runtime source: initial commit `2918c06f092a924cbc6e5cd6a3ded1d9a2be1153`.
-  Later documentation/test-helper changes do not change the runtime source.
+  This section describes the pre-networking binary.
 - Compiler warnings: none.
 - Executable: **9,712 bytes**, identified as a Linux-8086 `A_EXEC` executable.
 - Reserved heap: 4096 bytes; reserved stack: 2048 bytes. File size is not the

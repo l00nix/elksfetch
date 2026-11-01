@@ -41,6 +41,12 @@ class RenderTests(unittest.TestCase):
         self.assertIn('Model (set): x?[2J??', p.stdout)
         self.assertLess(max(map(len, p.stdout.splitlines())), 80)
 
+    def test_all_fields_fit_capacity(self):
+        p = self.run_fetch('--plain', '--host', 'Full fixture')
+        self.assertEqual(len(p.stdout.splitlines()), 16)
+        self.assertIn('Gateway: 192.168.100.1', p.stdout)
+        self.assertIn('TTY: /dev/tty1', p.stdout)
+
     def test_invalid_options(self):
         for args in [('--width',), ('--host',), ('--host', ''), ('--unknown',),
                      ('--width', '0'), ('--width', '-1'), ('--width', '241'),

@@ -5,6 +5,7 @@
 - [x] Native 8086 C executable, separate collector and renderer.
 - [x] Small, wide and information-only layouts with monochrome support.
 - [x] Native kernel identity, memory and uptime interfaces.
+- [x] Live network state, IPv4 and supported netmask/gateway queries.
 - [x] Minimal external build script and proposed ELKS image integration patch.
 - [x] HP 200LX DS smoke test and ELXcap screenshot retained (2026-11-01).
 - [ ] Test on the Amstrad PPC 512 and broaden HP 200LX acceptance.
@@ -23,7 +24,7 @@ No DOS executable or DOS hardware support is claimed by this milestone.
 
 ## Later ELKS possibilities
 
-Optional filesystem/network fields, additional logos and machine profiles.
+Optional filesystem fields, additional logos and machine profiles.
 Report CPU details only when they can be obtained reliably. `uname().machine`
 is a kernel platform/build string, not a processor model probe. Avoid CPU-speed
 benchmarks at startup and avoid modern Linux `/proc` or `/sys` assumptions.

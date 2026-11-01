@@ -11,3 +11,5 @@ jobs:
         run: sh -n toolchain/build-external.sh
       - name: Test renderer and command-line handling
         run: python3 tests/test_render.py
+      - name: Test network collection and fallback
+        run: python3 tests/test_network.py

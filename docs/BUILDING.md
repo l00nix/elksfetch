@@ -78,6 +78,7 @@ merge the candidate into public upstream while clone access remains private.
 
 ```sh
 python3 tests/test_render.py
+python3 tests/test_network.py
 python3 tests/qemu_smoke.py --image /path/to/hd32-fat.img \
   --binary build/elksfetch --out test-output/qemu
 ```
@@ -111,3 +112,8 @@ The launcher changes only its own process root to a temporary guest directory
 without `/dev` or `/etc`, then executes the unchanged ELKSfetch binary. This
 tests unavailable memory/uptime and UID fallback without altering kernel
 devices. It is not installed with the application.
+
+Network tests cover collector errors, partial replies, timeout and older-stack
+fallback. The QEMU smoke test also starts/stops networking on a virtual NE2000
+and checks live IPv4, netmask and gateway values. It uses a temporary image
+and does not configure physical hardware or forward host ports.

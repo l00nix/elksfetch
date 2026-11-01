@@ -24,3 +24,16 @@ No image content was composited, drawn over or generated. ELXcap reconstructs
 text-mode captures from the active logical text page and font; LCD zoom/pan,
 cursor and hardware inversion are outside its capture scope.
 See `../HP200LX-DS-20261101.md` and its JSON manifest for test details/hashes.
+
+## Networking update
+
+`elks-network.png` is a new QEMU framebuffer capture with NE2000 networking
+configured. `network-serial.txt` records the disconnected → configured →
+disconnected checks. The original three QEMU captures above remain historical.
+
+`hp200lx-network.bmp` is a second ELXcap capture of the physical HP 200LX DS,
+now displaying `Network: disconnected`. Its MD5, verified on both ends of
+the serial transfer, is `450f338977eceab23a590bc17aca532a`.
+`hp200lx-network.png` is its lossless PNG conversion and the current README
+hero. The same ELXcap limitations described above apply.
+See `../NETWORKING.md` for the revised executable and test details.

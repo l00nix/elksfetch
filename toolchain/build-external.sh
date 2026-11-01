@@ -20,5 +20,5 @@ ia16-elf-gcc -march=i8086 -mtune=i8086 -mcmodel=small -melks-libc \
     -I./src -I"$TOPDIR/include" -I"$TOPDIR/libc/include" -I"$TOPDIR/elks/include" \
     -maout-heap=4096 -maout-stack=2048 \
     -Wl,-Map,build/elksfetch.map \
-    src/main.c src/render.c platform/elks.c -o build/elksfetch
+    src/main.c src/render.c platform/elks.c platform/network.c -o build/elksfetch
 printf '%s\n' 'ELKSfetch built: build/elksfetch'

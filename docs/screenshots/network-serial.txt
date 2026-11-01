@@ -1,0 +1,180 @@
+Direct console, scan kbd 80x25 emulating ANSI (3 virtual consoles)
+xms: 15232K, off. 64K ext buffers, 8K cache, 15 req hdrs
+eth: ne0 at 300, irq 12, (ne2k) MAC 52:54:00:12:34:56, flags 0x80
+eth: wd0 at 0x240, irq 2, ram 0xce00 not found
+eth: 3c0 at 330, irq 11 not found
+df: CMOS df0 is 2.88M (5)
+ssd: no XMS
+hda:   31M CHS  63,16,63
+fd0: 2880K CHS  80, 2,36
+cfa:   31M CHS  63,16,63 31752K VER f0/512 xtide=0,0
+cfb: ATA at 1f0/3f6 xtide=0,0 not found (-22)
+hda:(0,63504) no mbr, no partitions
+cfa:(0,63504) no mbr, no partitions
+boot: BIOS drive 80, root device /dev/hda (0300)
+PC/AT class cpu 7, syscaps ff, 638K ram, 16 tasks, 64 files, 96 inodes
+ELKS 0.9.2 (62576 text, 32448 ftext, 10384 data, 8320 bss, 46830 heap)
+Kernel text ffff ftext 330 init 8b8 data b1c end 1b1c top 9f80 529+9+0K free
+FAT: me=f0,csz=2,#f=2,floc=1,fsz=124,rloc=249,#d=512,dloc=281,#s=63,504,ts=0
+FAT: total 31M, fat16 format
+VFS: Mounted root device /dev/hda (0300) msdos filesystem.
+Running /etc/rc.sys script
+Sun Nov  1 16:07:14 2026
+
+ELKS 0.9.2
+
+[0.35 secs] login: root
+# uname -a
+ELKS elks 0.9.2 commit e1469b64 20 Oct 2026 14:22:02 +0000 ibmpc i8086
+# elksfetch --plain
+OS: ELKS
+Kernel: 0.9.2
+Hostname: elks
+Platform: ibmpc i8086
+User: root
+Uptime: 0d 0h 0m 0s
+Main RAM: 170K used, 370K free
+XMS RAM: 0K used, 15232K free
+Network: disconnected
+Shell (env): /bin/sh
+Term (env): ansi
+TTY: /dev/ttys0
+# elksfetch --plain
+OS: ELKS
+Kernel: 0.9.2
+Hostname: elks
+Platform: ibmpc i8086
+User: root
+Uptime: 0d 0h 0m 2s
+Main RAM: 170K used, 370K free
+XMS RAM: 0K used, 15232K free
+Network: disconnected
+Shell (env): /bin/sh
+Term (env): ansi
+TTY: /dev/ttys0
+# meminfo -m
+    ADDR    SEG   TYPE      SIZE  CNT  NAME
+   01B1C0   1B1C   BUF      1280    1  
+   01B6C0   1B6C   free      320    0  
+   01B800   1B80   BUF     65536    1  
+   02B800   2B80   DSEG     5808    1  /bin/init 
+   02CEB0   2CEB   free    11616    0  
+   02FC10   2FC1   CSEG     3296    1  /bin/getty 
+   0308F0   308F   DSEG     2688    1  /bin/getty 
+   031370   3137   CSEG     3824    1  meminfo 
+   032260   3226   free     6144    0  
+   033A60   33A6   CSEG    43952    1  -/bin/sh 
+   03E610   3E61   DSEG    22688    1  -/bin/sh 
+   043EB0   43EB   free   375120    0  
+[Arena 2]
+   008B80   08B8   CSEG     7136    1  /bin/init 
+   00A760   0A76   DSEG     2448    1  meminfo 
+   00B0F0   0B0F   free      208    0  
+[Arena 3]
+   000500   0050   free     1536    0  
+  Main 155/541K used, 386K free, XMS 0/15232K used, 15232K free, Total 15773K
+# ps -u
+up for 0 days, 0 hours, and 0 minutes
+# elksfetch --width 0; echo INVALID=$?
+elksfetch: invalid or missing option value; see --help
+INVALID=2
+# elksfetch --host "QEMU test guest" --compact --width 40
+[1;33mOS[0m: ELKS
+[1;33mKernel[0m: 0.9.2
+[1;33mHostname[0m: elks
+[1;33mPlatform[0m: ibmpc i8086
+[1;33mModel (set)[0m: QEMU test guest
+[1;33mUser[0m: root
+[1;33mUptime[0m: 0d 0h 0m 2s
+[1;33mMain RAM[0m: 170K used, 370K free
+[1;33mXMS RAM[0m: 0K used, 15232K free
+[1;33mNetwork[0m: disconnected
+[1;33mShell (env)[0m: /bin/sh
+[1;33mTerm (env)[0m: ansi
+[1;33mTTY[0m: /dev/ttys0
+# elksfetch > /tmp/fetch.txt; cat /tmp/fetch.txt
+
+EEEEEE LL    KK  KK  SSSSS   OS: ELKS
+EE     LL    KK KK  SS       Kernel: 0.9.2
+EEEEE  LL    KKKK    SSSS    Hostname: elks
+EE     LL    KK KK      SS   Platform: ibmpc i8086
+EEEEEE LLLLL KK  KK SSSSS    User: root
+                             Uptime: 0d 0h 0m 2s
+   Linux on sixteen bits     Main RAM: 170K used, 370K free
+                             XMS RAM: 0K used, 15232K free
+                             Network: disconnected
+                             Shell (env): /bin/sh
+                             Term (env): ansi
+                             TTY: /dev/ttys0
+
+# cp /bin/elksfetch /tmp/elkfetch; /tmp/elkfetch --plain
+OS: ELKS
+Kernel: 0.9.2
+Hostname: elks
+Platform: ibmpc i8086
+User: root
+Uptime: 0d 0h 0m 3s
+Main RAM: 170K used, 370K free
+XMS RAM: 0K used, 15232K free
+Network: disconnected
+Shell (env): /bin/sh
+Term (env): ansi
+TTY: /dev/ttys0
+# echo -e '\033[2J\033[H' > /dev/tty1
+# elksfetch --color always < /dev/tty1 > /dev/tty1
+# echo -e '\033[2J\033[H' > /dev/tty1
+# elksfetch --mono < /dev/tty1 > /dev/tty1
+# echo -e '\033[2J\033[H' > /dev/tty1
+# elksfetch --plain --width 40 < /dev/tty1 > /dev/tty1
+# ktcp -b -p ne0 10.0.2.15 10.0.2.2 255.255.255.0
+ktcp: ip 10.0.2.15, gateway 10.0.2.2, netmask 255.255.255.0
+ktcp: /dev/ne0 mac 52.54.00.12.34.56 mtu 1500
+# elksfetch --plain
+OS: ELKS
+Kernel: 0.9.2
+Hostname: elks
+Platform: ibmpc i8086
+User: root
+Uptime: 0d 0h 0m 4s
+Main RAM: 251K used, 289K free
+XMS RAM: 0K used, 15232K free
+Network: connected (configured)
+IPv4: 10.0.2.15
+Netmask: 255.255.255.0
+Gateway: 10.0.2.2
+Shell (env): /bin/sh
+Term (env): ansi
+TTY: /dev/ttys0
+# echo -e '\033[2J\033[H' > /dev/tty1
+# elksfetch --mono < /dev/tty1 > /dev/tty1
+# net stop
+Stopping network
+# elksfetch --plain
+OS: ELKS
+Kernel: 0.9.2
+Hostname: elks
+Platform: ibmpc i8086
+User: root
+Uptime: 0d 0h 0m 5s
+Main RAM: 170K used, 370K free
+XMS RAM: 0K used, 15232K free
+Network: disconnected
+Shell (env): /bin/sh
+Term (env): ansi
+TTY: /dev/ttys0
+# mkdir /tmp/froot
+# cp /bin/elksfetch /tmp/froot/fetch
+# fetchroot; echo FALLBACK=$?
+OS: ELKS
+Kernel: 0.9.2
+Hostname: elks
+Platform: ibmpc i8086
+User: uid 0
+Uptime: unavailable (/dev/kmem)
+Main RAM: unavailable (/dev/kmem)
+Network: disconnected
+Shell (env): /bin/sh
+Term (env): ansi
+FALLBACK=0
+# sync
+# 
