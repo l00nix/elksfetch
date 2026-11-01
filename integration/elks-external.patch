@@ -1,0 +1,49 @@
+--- a/buildext.sh
++++ b/buildext.sh
+@@ -16,6 +16,7 @@
+ #       dflat           ia16-elf-gcc    D-Flat TUI memopad/library
+ #       elkirc          ia16-elf-gcc    IRC for ELKS
+ #       elksdigger      ia16-elf-gcc    Digger for ELKS
++#       elksfetch       ia16-elf-gcc    Small system-information utility
+ #       elksweb         ia16-elf-gcc    Graphical HTTP browser for IBM PC compatibles
+ #       owc_libc        OpenWatcom      ELKS C Library compiled by OWC
+ #       owc_elkscmd     OpenWatcom      Some elkscmd/ programs compiled by OWC
+@@ -362,6 +363,19 @@
+     echo "ELKSWeb build complete"
+ }
+ 
++elksfetch()
++{
++    echo "Building ELKSfetch..."
++    cd "$TOPDIR/extapps"
++    if [ ! -d elksfetch ] ; then
++        git clone https://github.com/l00nix/elksfetch.git elksfetch
++    fi
++    cd elksfetch
++    git pull --ff-only
++    ELKSFETCH_ELKS="$TOPDIR" sh toolchain/build-external.sh
++    echo "ELKSfetch build complete"
++}
++
+ # build all extapps repos
+ make_all()
+ {
+@@ -371,6 +385,7 @@
+     elkirc
+     elksdigger
+     elksweb
++    elksfetch
+     gem
+     if [ -n "$WATCOM" ] ; then
+         owc_libc
+--- a/elkscmd/ExtApplications
++++ b/elkscmd/ExtApplications
+@@ -28,6 +28,8 @@
+ # ------------- ----------------------------------------------------------
+ #
+ # ia16 builds
++# ELKSfetch: HD images by default; no floppy-size tags.
++elksfetch/build/elksfetch                           :elksfetch
+ # ELKSWeb is installed on HD images only (no floppy-size tags).
+ ELKSWeb/build/elksweb                              :elksweb
+ ELKSWeb/share/welcome.htm ::root/welcome.htm        :elksweb

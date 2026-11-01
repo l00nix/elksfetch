@@ -1,0 +1,13 @@
+name: Host checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  renderer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check shell syntax
+        run: sh -n toolchain/build-external.sh
+      - name: Test renderer and command-line handling
+        run: python3 tests/test_render.py
