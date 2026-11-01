@@ -71,7 +71,9 @@ wide-logo fallback and invalid arguments. The fixture is explicitly labelled
 and is never linked into the ELKS executable. Host compilation uses C89,
 `-Wall -Wextra -Werror -pedantic`. Shell syntax checks pass.
 
-GitHub Actions runs these host checks, not the target runtime test.
+The workflow draft is in `tests/github-host-checks.yml`. GitHub Actions is
+not enabled because the upload credential lacks workflow scope. The checks
+above were run locally; no successful GitHub Actions run is claimed.
 
 ## Remaining acceptance
 

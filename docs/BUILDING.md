@@ -90,8 +90,11 @@ getty support. The script copies the image into a temporary directory, installs
 the binary only into that copy, retains serial logs and QEMU PPM screenshots,
 and closes the emulator. It does not touch a physical disk or the input image.
 
-GitHub Actions runs host checks only. Target-build/runtime evidence is recorded
-separately in `docs/VALIDATION.md`.
+The proposed host-check workflow is saved as `tests/github-host-checks.yml`.
+It is not enabled: the GitHub credential used for this initial push does not
+have workflow scope. The same checks have passed locally. An owner can later
+move the draft to `.github/workflows/check.yml` using a credential with that
+permission. Target-build/runtime evidence is recorded in `docs/VALIDATION.md`.
 
 For the optional missing-device test, build a small test-only launcher using
 the same prepared IA16 environment:
