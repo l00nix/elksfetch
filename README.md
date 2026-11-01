@@ -24,7 +24,8 @@ line is ELKS's build/platform string, not a detected CPU model.*
 - Current user, uptime and memory usage through ELKS interfaces.
 - Main and XMS memory pools, with used/free values in KiB (`K`). These are
   kernel-managed pools, **not total installed physical RAM**. Usage includes
-  ELKSfetch itself. XMS is shown when the kernel reports a nonzero pool.
+  ELKSfetch itself. XMS is shown when the kernel reports a nonzero pool;
+  this does not imply XMS-backed application allocation is enabled.
 - Shell and terminal environment values, explicitly labelled as such.
 - TTY where available, and an optional machine label explicitly marked `set`.
 
@@ -78,7 +79,9 @@ ELKSFETCH_ELKS=/path/to/elks sh toolchain/build-external.sh
 ```
 
 The executable is `build/elksfetch`; copy it to `/bin/elksfetch` on ELKS.
-All logos are embedded. The build script uses the existing ELKS IA16 compiler,
+On FAT, install through the image builder/mtools to preserve the long name;
+for an in-guest copy, use the short filename `elkfetch`. All logos are embedded.
+The build script uses the existing ELKS IA16 compiler,
 libc and host tools, with no Python or checksum-tool prerequisite.
 
 The included [integration patch](integration/elks-external.patch) follows

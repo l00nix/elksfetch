@@ -76,7 +76,10 @@ with tempfile.TemporaryDirectory(prefix='fetch-qemu-') as tmp:
         command('ps -u')
         command('elksfetch --width 0; echo INVALID=$?')
         command('elksfetch --host "QEMU test guest" --compact --width 40')
-        command('elksfetch > /tmp/fetch.txt; cat /tmp/fetch.txt')
+        redirected = command('elksfetch > /tmp/fetch.txt; cat /tmp/fetch.txt')
+        assert b'\x1b' not in redirected
+        shortname = command('cp /bin/elksfetch /tmp/elkfetch; /tmp/elkfetch --plain')
+        assert b'OS: ELKS' in shortname and b'Uptime:' in shortname
         q = socket.socket(socket.AF_UNIX); q.connect(str(qmp)); f = q.makefile('rwb')
         f.readline()
         def qcommand(name, args=None):
@@ -94,7 +97,7 @@ with tempfile.TemporaryDirectory(prefix='fetch-qemu-') as tmp:
             qcommand('screendump', {'filename': str(a.out / (name + '.ppm'))})
         if a.chroot_helper:
             command('mkdir /tmp/froot')
-            command('cp /bin/elksfetch /tmp/froot/elksfetch')
+            command('cp /bin/elksfetch /tmp/froot/fetch')
             missing = command('fetchroot; echo FALLBACK=$?')
             assert b'unavailable (/dev/kmem)' in missing
             assert b'FALLBACK=0' in missing

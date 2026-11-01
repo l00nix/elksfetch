@@ -17,7 +17,11 @@ heap and 2048 bytes of stack. It rebuilds all three translation units, writes
 `build/elksfetch` and `build/elksfetch.map`, and removes an old executable
 before compiling so a failed compile cannot leave a stale install candidate.
 
-Copy `build/elksfetch` to `/bin/elksfetch` on the guest. It has no required
+Install `build/elksfetch` as `/bin/elksfetch` using the ELKS image builder or
+host-side mtools (which creates its FAT long filename). When copying within
+an ELKS FAT filesystem, use the eight-character name `/bin/elkfetch` and run
+`elkfetch`: ELKS FAT file creation does not create long filenames. MINIX
+filesystems can use the full `elksfetch` name. It has no required
 runtime assets. The wide and small ASCII logos are embedded. A normal user can
 run it; fields requiring `/dev/kmem` become explicitly unavailable if access
 is denied. Do not make it setuid just to obtain those fields.
@@ -88,3 +92,19 @@ and closes the emulator. It does not touch a physical disk or the input image.
 
 GitHub Actions runs host checks only. Target-build/runtime evidence is recorded
 separately in `docs/VALIDATION.md`.
+
+For the optional missing-device test, build a small test-only launcher using
+the same prepared IA16 environment:
+
+```sh
+# With TOPDIR and the ELKS toolchain PATH already set:
+ia16-elf-gcc -march=i8086 -mcmodel=small -melks-libc -Os -Wall -Wextra \
+  -maout-stack=2048 -maout-heap=2048 tests/without_kmem.c -o build/fetchroot
+python3 tests/qemu_smoke.py --image /path/to/hd32-fat.img \
+  --binary build/elksfetch --chroot-helper build/fetchroot --out test-output/qemu
+```
+
+The launcher changes only its own process root to a temporary guest directory
+without `/dev` or `/etc`, then executes the unchanged ELKSfetch binary. This
+tests unavailable memory/uptime and UID fallback without altering kernel
+devices. It is not installed with the application.
