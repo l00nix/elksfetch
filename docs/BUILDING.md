@@ -13,7 +13,7 @@ ELKSFETCH_ELKS=/absolute/path/to/elks sh toolchain/build-external.sh
 
 `TOPDIR` is also accepted, matching ELKS's external-application environment.
 The script uses `-march=i8086`, the small memory model, ELKS libc, 4096 bytes of
-heap and 2048 bytes of stack. It rebuilds all three translation units, writes
+heap and 2048 bytes of stack. It rebuilds all four translation units, writes
 `build/elksfetch` and `build/elksfetch.map`, and removes an old executable
 before compiling so a failed compile cannot leave a stale install candidate.
 
@@ -85,7 +85,8 @@ python3 tests/qemu_smoke.py --image /path/to/hd32-fat.img \
 
 The first command uses a labelled host fixture and tests all supported widths,
 logos, control-character sanitization and invalid arguments. It does not run
-ELKS. The second runs the target binary in QEMU and requires `qemu-system-i386`
+ELKS. The second checks the network collector with host fixtures. The third
+runs the target binary in QEMU and requires `qemu-system-i386`
 and mtools. Supply an unpartitioned bootable FAT ELKS HD image with serial
 getty support. The script copies the image into a temporary directory, installs
 the binary only into that copy, retains serial logs and QEMU PPM screenshots,

@@ -9,7 +9,7 @@
 - [x] Minimal external build script and proposed ELKS image integration patch.
 - [x] HP 200LX DS smoke test and ELXcap screenshot retained (2026-11-01).
 - [ ] Test on the Amstrad PPC 512 and broaden HP 200LX acceptance.
-- [ ] Set the first release version after hardware acceptance.
+- [x] Prepare version 0.1 as a private draft release after initial HP acceptance.
 - [ ] Confirm artwork attribution and choose which screenshots to publish.
 - [ ] Make the repository public when the owner requests it.
 - [ ] Propose upstream integration after public clone access is available.

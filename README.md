@@ -9,8 +9,9 @@ C program for [ELKS](https://github.com/ghaerr/elks). Intended hardware includes
 the Amstrad PPC 512 and HP 200LX. Initial real-hardware tests now pass on an
 HP 200LX DS; PPC 512 testing remains pending.
 
-**Status:** private development, `0.1.0-dev`. Native IA16 cross-build and QEMU
+**Status:** version `0.1`, prepared as a draft release in this private repository. Native IA16 cross-build and QEMU
 runtime verified, plus an [HP 200LX DS hardware smoke test](docs/HP200LX-DS-20261101.md).
+See the [0.1 release notes](docs/releases/v0.1.md) for artifacts and validation.
 DOSfetch is planned, not implemented. The upstream integration
 patch is a candidate and has not been submitted.
 

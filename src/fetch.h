@@ -1,6 +1,6 @@
 #ifndef FETCH_H
 #define FETCH_H
-#define FETCH_VERSION "0.1.0-dev"
+#define FETCH_VERSION "0.1"
 #define FETCH_TEXT 96
 #define FETCH_ROWS 16
 struct fetch_row { const char *label; char value[FETCH_TEXT]; };

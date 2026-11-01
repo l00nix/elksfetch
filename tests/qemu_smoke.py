@@ -66,6 +66,7 @@ with tempfile.TemporaryDirectory(prefix='fetch-qemu-') as tmp:
             s.sendall(text.encode() + b'\r')
             return receive_until(b'# ')
         command('uname -a')
+        assert b'elksfetch 0.1\r\n' in command('elksfetch --version')
         plain = command('elksfetch --plain')
         assert b'OS: ELKS' in plain and b'Main RAM:' in plain and b'Uptime:' in plain
         assert b'unavailable' not in plain

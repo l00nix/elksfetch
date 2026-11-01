@@ -37,3 +37,10 @@ the serial transfer, is `450f338977eceab23a590bc17aca532a`.
 `hp200lx-network.png` is its lossless PNG conversion and the current README
 hero. The same ELXcap limitations described above apply.
 See `../NETWORKING.md` for the revised executable and test details.
+
+## Version 0.1 draft
+
+`elks-v0.1.png` is the QEMU framebuffer capture from the exact version 0.1
+executable, with networking configured. Build identity and checks are in
+`../releases/v0.1.md`. The attached HP image remains the preceding development
+build's physical-device capture, as identified in the release notes.
