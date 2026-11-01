@@ -1,0 +1,25 @@
+
+EEEEEE LL    KK  KK  SSSSS   OS: ELKS
+EE     LL    KK KK  SS       Kernel: 0.9.2
+EEEEE  LL    KKKK    SSSS    Hostname: elks
+EE     LL    KK KK      SS   Platform: ibmpc i8086
+EEEEEE LLLLL KK  KK SSSSS    Model (set): Amstrad PPC 512
+                             User: root
+   Linux on sixteen bits     Uptime: 0d 1h 42m 35s
+                             Main RAM: 312K used, 247K free
+                             XMS RAM: 0K used, 34816K free
+                             Network: connected (configured)
+                             IPv4: 10.0.0.66
+                             Netmask: 255.255.255.0
+                             Gateway: 10.0.0.1
+                             Shell (env): /bin/sh
+                             Term (env): ansi
+                             TTY: /dev/tty1
+
+
+
+
+
+
+
+

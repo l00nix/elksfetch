@@ -1,0 +1,88 @@
+chmod 755 /root/ef1101/elksfetch
+# echo PD144fe8506049=$?
+PD144fe8506049=0
+
+# /root/ef1101/elksfetch --version
+elksfetch 0.1
+# echo PDe44d78c33ea0=$?
+PDe44d78c33ea0=0
+
+# /root/ef1101/elksfetch --plain
+OS: ELKS
+Kernel: 0.9.2
+Hostname: elks
+Platform: ibmpc i8086
+User: root
+Uptime: 0d 1h 41m 8s
+Main RAM: 290K used, 269K free
+XMS RAM: 0K used, 34816K free
+Network: connected (configured)
+IPv4: 10.0.0.66
+Netmask: 255.255.255.0
+Gateway: 10.0.0.1
+Shell (env): /bin/sh
+Term (env): ansi
+TTY: /dev/ttyp0
+# echo PDc0108e33c298=$?
+PDc0108e33c298=0
+
+# uname -a
+ELKS elks 0.9.2 commit e7a56a43 01 Nov 2026 15:42:06 +0000 ibmpc i8086
+# echo PDa41e7d3e0ea3=$?
+PDa41e7d3e0ea3=0
+
+# ps -u
+up for 0 days, 1 hour, and 41 minutes
+# echo PDc62ec6e3d7f7=$?
+PDc62ec6e3d7f7=0
+
+# md5sum /root/ef1101/elksfetch
+7192d431ab7bd17389438a96a047fcf5  /root/ef1101/elksfetch
+# echo PD55a99e06eab9=$?
+PD55a99e06eab9=0
+
+
+Capture commands:
+cd /root/ef1101
+# echo PDab6ce012ff6d=$?
+PDab6ce012ff6d=0
+
+# dd if=/dev/kmem of=bda.bin bs=16 skip=64 count=16
+16+0 records in
+16+0 records out
+256 bytes (0+ KiB) copied
+# echo PD8a3f9d2d2c11=$?
+PD8a3f9d2d2c11=0
+
+# dd if=/dev/kmem of=font.bin bs=2 skip=523575 count=512
+512+0 records in
+512+0 records out
+1024 bytes (1 KiB) copied
+# echo PD82d81d84eeeb=$?
+PD82d81d84eeeb=0
+
+# sh showmono
+250+0 records in
+250+0 records out
+4000 bytes (3+ KiB) copied
+# echo PD50661a4aa76f=$?
+PD50661a4aa76f=0
+
+# sh showcompact
+250+0 records in
+250+0 records out
+4000 bytes (3+ KiB) copied
+# echo PD98a07b518689=$?
+PD98a07b518689=0
+
+# sh showmono
+250+0 records in
+250+0 records out
+4000 bytes (3+ KiB) copied
+# echo PD4b525e093a35=$?
+PD4b525e093a35=0
+
+# sync
+# echo PDb669be9e0386=$?
+PDb669be9e0386=0
+

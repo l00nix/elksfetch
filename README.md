@@ -8,13 +8,14 @@ ELKSfetch is inspired by [Neofetch](https://github.com/dylanaraps/neofetch),
 written as a new native C program for [ELKS](https://github.com/ghaerr/elks).
 
 Intended hardware includes the Amstrad PPC 512 and HP 200LX. Initial
-real-hardware tests pass on an HP 200LX DS; PPC 512 testing remains pending.
+real-hardware smoke tests pass on both an HP 200LX DS and an Amstrad PPC 512.
 
 **Version 0.1** is available as an unpublished draft in this private repository.
 See the [0.1 release notes](docs/releases/v0.1.md) for artifacts and validation.
 
-The native IA16 build and ELKS/QEMU runtime checks pass. The preceding
-development build also passed an
+The native IA16 build and ELKS/QEMU runtime checks pass. Version 0.1 also
+passes the [PPC 512 hardware smoke test](docs/PPC512-20261101.md).
+The preceding development build passed an
 [HP 200LX DS hardware smoke test](docs/HP200LX-DS-20261101.md).
 
 DOSfetch is planned, not implemented. The upstream integration patch is a
@@ -107,11 +108,31 @@ The version 0.1 capture appears below.*
 
 ## Screenshots
 
-All captures below were taken on 2026-11-01. The HP images are ELXcap captures
-from physical hardware; the QEMU images are emulator framebuffer captures.
+All captures below were taken on 2026-11-01. The HP images are ELXcap captures,
+and the PPC images come from its actual text video memory and BIOS font.
+The QEMU images are emulator framebuffer captures.
 See [screenshot provenance](docs/screenshots/README.md) for build details and
 original files. The latest HP capture appears at the top of this README, and
 the networking development capture appears in the Networking section above.
+
+### Amstrad PPC 512 — version 0.1
+
+![ELKSfetch 0.1 running on the physical Amstrad PPC 512](docs/screenshots/ppc512-mono.png)
+
+*The draft-release executable running on the PPC with PicoMEM, using `--mono`
+and an explicitly configured model label. IPv4, netmask and gateway come from
+the live ELKS network stack.*
+
+![ELKSfetch 0.1 compact output on the physical Amstrad PPC 512](docs/screenshots/ppc512-compact.png)
+
+*The same executable with `--plain --width 40`. Output occupies 40 columns of
+the PPC's 80-column console; this does not switch its hardware video mode.*
+
+These images reconstruct the PPC's logical text display from B8000h video
+memory and its freshly captured BIOS font. The 200 scan lines are doubled to
+640×400 for viewing. LCD tint/contrast and cursor/blink phase are not reproduced.
+See the [PPC test report](docs/PPC512-20261101.md) and
+[capture manifest](docs/PPC512-20261101.json) for evidence.
 
 ### HP 200LX DS — first hardware test
 
@@ -183,7 +204,7 @@ and [validation evidence](docs/VALIDATION.md).
 | `integration/` | Proposed upstream ELKS build/install patch |
 | `artwork/` | Original wide wordmark and provenance |
 | `tests/` | Host fixture checks and real ELKS/QEMU smoke test |
-| `docs/screenshots/` | Physical HP 200LX ELXcap and QEMU framebuffer captures |
+| `docs/screenshots/` | HP 200LX, PPC 512 and QEMU display captures |
 
 The collector is separate from the renderer so a future DOSfetch can share
 the presentation code while using DOS/BIOS interfaces. See the [roadmap](docs/ROADMAP.md).

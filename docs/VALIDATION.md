@@ -3,7 +3,9 @@
 This records the original emulator/build milestone. The subsequent networking
 implementation has separate [validation evidence](NETWORKING.md). A subsequent
 [HP 200LX DS hardware smoke test](HP200LX-DS-20261101.md) passed on the same
-date. This is still a development milestone, not a public release.
+date. The exact version 0.1 executable later passed a
+[PPC 512 hardware smoke test](PPC512-20261101.md).
+This is still a development milestone, not a public release.
 
 ## Build
 
@@ -80,9 +82,10 @@ above were run locally; no successful GitHub Actions run is claimed.
 
 ## Remaining acceptance
 
-The initial HP 200LX DS hardware run is documented separately. PPC 512,
-true 8088 timing/performance, serial terminal varieties, longer-running
-hardware acceptance, and other ELKS configurations remain unverified. This
-QEMU run on a 486 does not establish execution on a physical 8086/8088.
+Subsequent HP 200LX DS and [PPC 512](PPC512-20261101.md) hardware smoke tests
+are documented separately. Timing/performance benchmarks, serial terminal
+varieties, longer-running hardware acceptance, and other ELKS configurations
+remain unverified. This QEMU run itself does not establish physical-hardware
+execution; the separate hardware reports provide that evidence.
 DOSfetch is not implemented. The integration patch has not been submitted
 upstream, and the repository remains private.

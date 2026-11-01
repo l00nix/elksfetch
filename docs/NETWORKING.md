@@ -68,5 +68,6 @@ No compiler warnings. Executable: **10,944 bytes**.
 
 The older-stack active-network fallback is covered by host fixtures and source
 inspection; it has not yet been exercised with an active link on the HP.
-PPC hardware testing remains pending. Screenshot provenance and the QEMU
-transcript are in [screenshots](screenshots/README.md).
+A subsequent [PPC 512 test](PPC512-20261101.md) passed with the exact 0.1
+executable and live IPv4/netmask/gateway reporting. Screenshot provenance and
+the QEMU transcript are in [screenshots](screenshots/README.md).

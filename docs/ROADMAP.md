@@ -8,7 +8,8 @@
 - [x] Live network state, IPv4 and supported netmask/gateway queries.
 - [x] Minimal external build script and proposed ELKS image integration patch.
 - [x] HP 200LX DS smoke test and ELXcap screenshot retained (2026-11-01).
-- [ ] Test on the Amstrad PPC 512 and broaden HP 200LX acceptance.
+- [x] Version 0.1 PPC 512 smoke test and two display captures (2026-11-01).
+- [ ] Broaden PPC/HP endurance and terminal acceptance.
 - [x] Prepare version 0.1 as a private draft release after initial HP acceptance.
 - [ ] Confirm artwork attribution and choose which screenshots to publish.
 - [ ] Make the repository public when the owner requests it.

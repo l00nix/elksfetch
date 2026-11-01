@@ -44,3 +44,23 @@ See `../NETWORKING.md` for the revised executable and test details.
 executable, with networking configured. Build identity and checks are in
 `../releases/v0.1.md`. The attached HP image remains the preceding development
 build's physical-device capture, as identified in the release notes.
+
+## PPC 512 version 0.1 hardware captures
+
+`ppc512-mono.png` and `ppc512-compact.png` show the exact 0.1 release executable
+running on the physical Amstrad PPC 512 with PicoMEM. They use `--mono` and
+`--plain --width 40` respectively, with `--host "Amstrad PPC 512"`.
+The companion `.txt` files decode the actual character cells.
+
+The existing FTP/telnet connection transferred the executable and captures.
+For each image, the program rendered directly to `/dev/tty1`, then 4,000 bytes
+were read from physical B8000h through `/dev/kmem`. The 128-character 8×8 ROM
+font was freshly read from FFA6Eh. A renderer combined those bytes with the
+CGA palette and doubled each scan line to produce a 640×400 PNG. It did not
+synthesize output from a text transcript. BIOS data confirmed mode 3, 80 columns
+and active page 0. These are logical display captures, not photographs of the
+LCD; its tint/contrast and cursor/blink phase are not reconstructed.
+
+See [test results](../PPC512-20261101.md) and
+[hashes/capture metadata](../PPC512-20261101.json). Raw video cells, BIOS font
+and BIOS data-area bytes are retained in the local hardware evidence directory.
