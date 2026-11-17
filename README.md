@@ -12,8 +12,10 @@ written as a new native C program for [ELKS](https://github.com/ghaerr/elks).
 Intended hardware includes the Amstrad PPC 512 and HP 200LX. Initial
 real-hardware smoke tests pass on both an HP 200LX DS and an Amstrad PPC 512.
 
-**Version 0.1** is available as an unpublished draft in this private repository.
-See the [0.1 release notes](docs/releases/v0.1.md) for artifacts and validation.
+The source repository is **public**. **Version 0.1** remains an unpublished
+GitHub release draft; its assets are not yet available for public download.
+Build from source using the instructions below. See the
+[0.1 release notes](docs/releases/v0.1.md) for the prepared artifacts and validation.
 
 The native IA16 build and ELKS/QEMU runtime checks pass. Version 0.1 also
 passes the [PPC 512 hardware smoke test](docs/PPC512-20261101.md).
@@ -190,8 +192,8 @@ The included [integration patch](integration/elks-external.patch) follows
 [ghaerr's external-repository guidance for ELKSWeb](https://github.com/ghaerr/elks/discussions/2185#discussioncomment-19053594):
 `./buildext.sh elksfetch` clones/updates/builds the repository, and an
 `ExtApplications` entry includes the binary in configured HD images. Default
-floppy selections stay unchanged. Private clone access is required until the
-repository is published.
+floppy selections stay unchanged. The public repository can be cloned without
+GitHub credentials; the integration patch remains an unsubmitted candidate.
 
 See [building, remote compilation and image integration](docs/BUILDING.md)
 and [validation evidence](docs/VALIDATION.md).

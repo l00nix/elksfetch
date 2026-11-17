@@ -37,9 +37,8 @@ scp buildbox:/work/elks/extapps/elksfetch/build/elksfetch ./build/elksfetch
 ```
 
 Create local `build/` first. Substitute your SSH host and checkout path.
-While the repository is private, the build host needs authorized GitHub read
-access. An alternative is a private source archive or Git bundle transferred
-with SSH; no GitHub token belongs in the source, command history or scripts.
+The repository is public and can be cloned over HTTPS without GitHub
+credentials. A source archive or Git bundle can also be transferred with SSH.
 
 ## ELKS external application and image inclusion
 
@@ -70,9 +69,9 @@ For a custom selection, `:elksfetch` is the application tag; fixed floppy
 profiles override generic tags in the current upstream installer, so adding
 it to a floppy requires an explicit profile/table change and a size check.
 
-The patch is a private integration candidate, not an upstream submission.
-Public ELKS builds cannot clone this repository until it is published. Do not
-merge the candidate into public upstream while clone access remains private.
+The patch is an integration candidate, not an upstream submission. Public
+ELKS builds can now clone this repository without credentials. Applying or
+submitting the integration patch remains a separate step.
 
 ## Verification
 
