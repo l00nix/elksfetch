@@ -43,7 +43,7 @@
  #
  # ia16 builds
 +# ELKSfetch: HD images by default; no floppy-size tags.
-+elksfetch/build/elksfetch                           :elksfetch
++elksfetch/build/elksftch                            :elksfetch
  # ELKSWeb is installed on HD images only (no floppy-size tags).
  ELKSWeb/build/elksweb                              :elksweb
  ELKSWeb/share/welcome.htm ::root/welcome.htm        :elksweb

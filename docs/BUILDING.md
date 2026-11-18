@@ -14,14 +14,14 @@ ELKSFETCH_ELKS=/absolute/path/to/elks sh toolchain/build-external.sh
 `TOPDIR` is also accepted, matching ELKS's external-application environment.
 The script uses `-march=i8086`, the small memory model, ELKS libc, 4096 bytes of
 heap and 2048 bytes of stack. It rebuilds all four translation units, writes
-`build/elksfetch` and `build/elksfetch.map`, and removes an old executable
+`build/elksftch` and `build/elksftch.map`, and removes an old executable
 before compiling so a failed compile cannot leave a stale install candidate.
 
-Install `build/elksfetch` as `/bin/elksfetch` using the ELKS image builder or
-host-side mtools (which creates its FAT long filename). When copying within
-an ELKS FAT filesystem, use the eight-character name `/bin/elkfetch` and run
-`elkfetch`: ELKS FAT file creation does not create long filenames. MINIX
-filesystems can use the full `elksfetch` name. It has no required
+Install `build/elksftch` as `/bin/elksftch` on both FAT and MINIX. The
+basename is eight characters and can be created by ELKS itself. Version 0.1
+used `elksfetch` (or the documented FAT workaround `elkfetch`); update any
+scripts to call `elksftch`. The project/repository and `buildext.sh elksfetch`
+selector keep their existing names. The program has no required
 runtime assets. The wide and small ASCII logos are embedded. A normal user can
 run it; fields requiring `/dev/kmem` become explicitly unavailable if access
 is denied. Do not make it setuid just to obtain those fields.
@@ -33,7 +33,7 @@ into `extapps/elksfetch`, then invoke the same shell builder. For example:
 
 ```sh
 ssh buildbox 'cd /work/elks/extapps/elksfetch && git pull --ff-only && TOPDIR=/work/elks sh toolchain/build-external.sh'
-scp buildbox:/work/elks/extapps/elksfetch/build/elksfetch ./build/elksfetch
+scp buildbox:/work/elks/extapps/elksfetch/build/elksftch ./build/elksftch
 ```
 
 Create local `build/` first. Substitute your SSH host and checkout path.
@@ -50,7 +50,7 @@ It adds:
 
 - `elksfetch()` and the `make_all()` entry in `buildext.sh`;
 - clone/update of `extapps/elksfetch`;
-- `elksfetch/build/elksfetch :elksfetch` in `elkscmd/ExtApplications`.
+- `elksfetch/build/elksftch :elksfetch` in `elkscmd/ExtApplications`.
 
 In a disposable/prepared ELKS checkout:
 
@@ -79,7 +79,7 @@ submitting the integration patch remains a separate step.
 python3 tests/test_render.py
 python3 tests/test_network.py
 python3 tests/qemu_smoke.py --image /path/to/hd32-fat.img \
-  --binary build/elksfetch --out test-output/qemu
+  --binary build/elksftch --out test-output/qemu
 ```
 
 The first command uses a labelled host fixture and tests all supported widths,
@@ -105,7 +105,7 @@ the same prepared IA16 environment:
 ia16-elf-gcc -march=i8086 -mcmodel=small -melks-libc -Os -Wall -Wextra \
   -maout-stack=2048 -maout-heap=2048 tests/without_kmem.c -o build/fetchroot
 python3 tests/qemu_smoke.py --image /path/to/hd32-fat.img \
-  --binary build/elksfetch --chroot-helper build/fetchroot --out test-output/qemu
+  --binary build/elksftch --chroot-helper build/fetchroot --out test-output/qemu
 ```
 
 The launcher changes only its own process root to a temporary guest directory

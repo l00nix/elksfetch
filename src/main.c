@@ -19,8 +19,8 @@ void fetch_add(struct fetch_info *info, const char *label, const char *value)
 
 static void usage(void)
 {
-    puts("elksfetch " FETCH_VERSION " - a small system portrait for ELKS\n"
-         "Usage: elksfetch [options]\n"
+    puts("elksftch " FETCH_VERSION " - a small system portrait for ELKS\n"
+         "Usage: elksftch [options]\n"
          "  --logo small|wide|none   Logo style (default: small)\n"
          "  --compact               Information only\n"
          "  --plain                 Information only, no colour\n"
@@ -41,7 +41,7 @@ int main(int argc, char **argv)
     for (i = 1; i < argc; ++i) {
         const char *arg = argv[i];
         if (!strcmp(arg, "--help")) { usage(); return 0; }
-        if (!strcmp(arg, "--version")) { puts("elksfetch " FETCH_VERSION); return 0; }
+        if (!strcmp(arg, "--version")) { puts("elksftch " FETCH_VERSION); return 0; }
         if (!strcmp(arg, "--compact")) { logo = 0; continue; }
         if (!strcmp(arg, "--plain")) { logo = 0; color = 0; continue; }
         if (!strcmp(arg, "--mono")) { color = 0; continue; }
@@ -81,6 +81,6 @@ int main(int argc, char **argv)
     fetch_render(&info, width, logo, color);
     return ferror(stdout) ? 1 : 0;
 bad_option:
-    fputs("elksfetch: invalid or missing option value; see --help\n", stderr);
+    fputs("elksftch: invalid or missing option value; see --help\n", stderr);
     return 2;
 }

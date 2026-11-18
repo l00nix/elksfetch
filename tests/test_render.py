@@ -26,6 +26,11 @@ class RenderTests(unittest.TestCase):
         return subprocess.run([self.exe, *args], capture_output=True, text=True,
                               env={**os.environ, 'TERM': 'vt100'})
 
+    def test_command_name_and_version(self):
+        self.assertEqual(self.run_fetch('--version').stdout, 'elksftch 0.1.1\n')
+        self.assertIn('Usage: elksftch [options]', self.run_fetch('--help').stdout)
+        self.assertTrue(self.run_fetch('--unknown').stderr.startswith('elksftch:'))
+
     def test_every_supported_width_and_logo(self):
         for width in range(20, 241):
             for logo in ('small', 'wide', 'none'):

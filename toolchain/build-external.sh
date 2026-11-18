@@ -13,12 +13,12 @@ command -v ia16-elf-gcc >/dev/null
 command -v elf2elks >/dev/null
 mkdir -p build
 # Remove the old binary before compiling: failed builds cannot install it.
-rm -f build/elksfetch
+rm -f build/elksftch build/elksfetch
 ia16-elf-gcc -march=i8086 -mtune=i8086 -mcmodel=small -melks-libc \
     -mno-segment-relocation-stuff -Os -Wall -Wextra \
     -fno-builtin-printf -fno-builtin-fprintf \
     -I./src -I"$TOPDIR/include" -I"$TOPDIR/libc/include" -I"$TOPDIR/elks/include" \
     -maout-heap=4096 -maout-stack=2048 \
-    -Wl,-Map,build/elksfetch.map \
-    src/main.c src/render.c platform/elks.c platform/network.c -o build/elksfetch
-printf '%s\n' 'ELKSfetch built: build/elksfetch'
+    -Wl,-Map,build/elksftch.map \
+    src/main.c src/render.c platform/elks.c platform/network.c -o build/elksftch
+printf '%s\n' 'ELKSfetch built: build/elksftch'

@@ -12,10 +12,12 @@ written as a new native C program for [ELKS](https://github.com/ghaerr/elks).
 Intended hardware includes the Amstrad PPC 512 and HP 200LX. Initial
 real-hardware smoke tests pass on both an HP 200LX DS and an Amstrad PPC 512.
 
-The source repository is **public**. **Version 0.1** remains an unpublished
-GitHub release draft; its assets are not yet available for public download.
-Build from source using the instructions below. See the
-[0.1 release notes](docs/releases/v0.1.md) for the prepared artifacts and validation.
+The source repository is **public**. The current compatibility update is
+**0.1.1**, with the eight-character command **`elksftch`** on both FAT and MINIX.
+The project, GitHub repository and EPT package remain named **ELKSfetch** /
+`elksfetch`. Version 0.1 artifacts and screenshots retain their original names.
+See [0.1.1 release notes](docs/releases/v0.1.1.md) and the historical
+[0.1 release notes](docs/releases/v0.1.md).
 
 The native IA16 build and ELKS/QEMU runtime checks pass. Version 0.1 also
 passes the [PPC 512 hardware smoke test](docs/PPC512-20261101.md).
@@ -55,14 +57,14 @@ Networking uses a read-only local socket query to `ktcp`.
 ## Usage
 
 ```sh
-elksfetch
-elksfetch --mono
-elksfetch --plain
-elksfetch --compact --width 40
-elksfetch --host "Amstrad PPC 512"
-elksfetch --host "HP 200LX"
-elksfetch --logo wide --width 132
-elksfetch --help
+elksftch
+elksftch --mono
+elksftch --plain
+elksftch --compact --width 40
+elksftch --host "Amstrad PPC 512"
+elksftch --host "HP 200LX"
+elksftch --logo wide --width 132
+elksftch --help
 ```
 
 Colour is automatic only on a terminal with a nonempty, non-`dumb` `TERM`;
@@ -182,9 +184,9 @@ With an already built ELKS checkout:
 ELKSFETCH_ELKS=/path/to/elks sh toolchain/build-external.sh
 ```
 
-The executable is `build/elksfetch`; copy it to `/bin/elksfetch` on ELKS.
-On FAT, install through the image builder/mtools to preserve the long name;
-for an in-guest copy, use the short filename `elkfetch`. All logos are embedded.
+The executable is `build/elksftch`; install it as `/bin/elksftch` on both FAT
+and MINIX. Every installed filename fits FAT 8.3; no long-name creation or
+filesystem-specific alias is required. All logos are embedded.
 The build script uses the existing ELKS IA16 compiler,
 libc and host tools, with no Python or checksum-tool prerequisite.
 

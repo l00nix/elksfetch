@@ -29,7 +29,7 @@ with tempfile.TemporaryDirectory(prefix='fetch-qemu-') as tmp:
     assert len(boot.encode()) <= 1023, 'bootopts exceeds ELKS limit'
     (temp / 'bootopts').write_text(boot)
     subprocess.run(['mcopy', '-o', '-i', str(disk), str(temp / 'bootopts'), '::/bootopts'], check=True)
-    subprocess.run(['mcopy', '-o', '-i', str(disk), str(a.binary), '::/bin/elksfetch'], check=True)
+    subprocess.run(['mcopy', '-o', '-i', str(disk), str(a.binary), '::/bin/fetchin'], check=True)
     if a.chroot_helper:
         subprocess.run(['mcopy', '-o', '-i', str(disk), str(a.chroot_helper), '::/bin/fetchroot'], check=True)
     serial, qmp = temp / 'serial', temp / 'qmp'
@@ -66,22 +66,24 @@ with tempfile.TemporaryDirectory(prefix='fetch-qemu-') as tmp:
             s.sendall(text.encode() + b'\r')
             return receive_until(b'# ')
         command('uname -a')
-        assert b'elksfetch 0.1\r\n' in command('elksfetch --version')
-        plain = command('elksfetch --plain')
+        # Create the installed name through ELKS FAT itself, not host VFAT.
+        assert b'INSTALL=0' in command('cp /bin/fetchin /bin/elksftch; echo INSTALL=$?')
+        assert b'elksftch 0.1.1\r\n' in command('elksftch --version')
+        plain = command('elksftch --plain')
         assert b'OS: ELKS' in plain and b'Main RAM:' in plain and b'Uptime:' in plain
         assert b'unavailable' not in plain
         assert b'Network: disconnected' in plain and b'IPv4:' not in plain
         time.sleep(2)
-        later = command('elksfetch --plain')
+        later = command('elksftch --plain')
         assert plain.split(b'Uptime: ')[1].split(b'\r')[0] != later.split(b'Uptime: ')[1].split(b'\r')[0]
         assert b'\x1b' not in plain
         command('meminfo -m')
         command('ps -u')
-        command('elksfetch --width 0; echo INVALID=$?')
-        command('elksfetch --host "QEMU test guest" --compact --width 40')
-        redirected = command('elksfetch > /tmp/fetch.txt; cat /tmp/fetch.txt')
+        command('elksftch --width 0; echo INVALID=$?')
+        command('elksftch --host "QEMU test guest" --compact --width 40')
+        redirected = command('elksftch > /tmp/fetch.txt; cat /tmp/fetch.txt')
         assert b'\x1b' not in redirected
-        shortname = command('cp /bin/elksfetch /tmp/elkfetch; /tmp/elkfetch --plain')
+        shortname = command('cp /bin/elksftch /tmp/elksftch; /tmp/elksftch --plain')
         assert b'OS: ELKS' in shortname and b'Uptime:' in shortname
         q = socket.socket(socket.AF_UNIX); q.connect(str(qmp)); f = q.makefile('rwb')
         f.readline()
@@ -95,26 +97,26 @@ with tempfile.TemporaryDirectory(prefix='fetch-qemu-') as tmp:
         for name, options in [('elks-colour', '--color always'), ('elks-mono', '--mono'),
                               ('elks-compact', '--plain --width 40')]:
             command("echo -e '\\033[2J\\033[H' > /dev/tty1")
-            command('elksfetch ' + options + ' < /dev/tty1 > /dev/tty1')
+            command('elksftch ' + options + ' < /dev/tty1 > /dev/tty1')
             time.sleep(.3)
             qcommand('screendump', {'filename': str(a.out / (name + '.ppm'))})
         # Only the disposable guest is configured. No host port forwarding.
         command('ktcp -b -p ne0 10.0.2.15 10.0.2.2 255.255.255.0')
-        connected = command('elksfetch --plain')
+        connected = command('elksftch --plain')
         assert b'Network: connected (configured)' in connected
         assert b'IPv4: 10.0.2.15' in connected
         assert b'Netmask: 255.255.255.0' in connected
         assert b'Gateway: 10.0.2.2' in connected
         command("echo -e '\\033[2J\\033[H' > /dev/tty1")
-        command('elksfetch --mono < /dev/tty1 > /dev/tty1')
+        command('elksftch --mono < /dev/tty1 > /dev/tty1')
         time.sleep(.3)
         qcommand('screendump', {'filename': str(a.out / 'elks-network.ppm')})
         command('net stop')
-        stopped = command('elksfetch --plain')
+        stopped = command('elksftch --plain')
         assert b'Network: disconnected' in stopped and b'IPv4:' not in stopped
         if a.chroot_helper:
             command('mkdir /tmp/froot')
-            command('cp /bin/elksfetch /tmp/froot/fetch')
+            command('cp /bin/elksftch /tmp/froot/fetch')
             missing = command('fetchroot; echo FALLBACK=$?')
             assert b'unavailable (/dev/kmem)' in missing
             assert b'FALLBACK=0' in missing
