@@ -56,6 +56,20 @@ Networking uses a read-only local socket query to `ktcp`.
 
 ## Usage
 
+**Install `elksfetch`; run `elksftch`.** The EPT package keeps its existing
+name so installations can update normally; the executable and installed
+documentation directory use eight-character names for FAT compatibility.
+
+With networking running and `REPO=http://ept.8088retro.com` in `/etc/ept.cfg`:
+
+```sh
+ept install -n elksfetch
+elksftch
+```
+
+The package is currently in the mirror's nightly catalogue. See the
+[0.1.1 validation notes](docs/releases/v0.1.1.md) for test scope and limitations.
+
 ```sh
 elksftch
 elksftch --mono
