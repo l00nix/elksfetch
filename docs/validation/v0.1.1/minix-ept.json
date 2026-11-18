@@ -1,0 +1,160 @@
+{
+  "passed": true,
+  "environment": "isolated ELKS/QEMU minix disk snapshot",
+  "ept_version": "1.4",
+  "upgrade_from_0_1": true,
+  "checks": [
+    {
+      "command": "ept",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "command": "md5sum /bin/ept",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "ktcp -b -p ne0 10.0.2.15 10.0.2.2 255.255.255.0",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "ifconfig",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "dmesg",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "echo REPO=http://10.0.2.2:57672/old > /etc/ept.cfg",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "ept install -n elksfetch",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "elksfetch --version",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "echo REPO=http://10.0.2.2:57672 > /etc/ept.cfg",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "ept list -n",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "ept install -n elksfetch",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "test ! -f /bin/elksfetch",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "test ! -f /lib/elksfetch/readme",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "test ! -f /lib/elksfetch/license",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "md5sum /bin/elksftch",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "md5sum /lib/elksftch/readme",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "md5sum /lib/elksftch/license",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "elksftch --version",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "elksftch --plain",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "elksftch --mono --host \"EPT test\"",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "elksftch --plain --width 40",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "elksftch --help",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "elksftch --invalid",
+      "exit": 2,
+      "expected": 2
+    },
+    {
+      "command": "ept install -n elksfetch",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "ept remove elksfetch",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "test ! -f /bin/elksftch",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "test ! -f /lib/elksftch/readme",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "test ! -f /lib/elksftch/license",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "md5sum /bin/ept",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "command": "sync",
+      "exit": 0,
+      "expected": 0
+    }
+  ],
+  "fat_xms_disabled": false,
+  "physical_hardware_test": false
+}
